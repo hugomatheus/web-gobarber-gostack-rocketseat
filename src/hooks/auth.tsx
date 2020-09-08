@@ -17,13 +17,13 @@ interface AuthContextData {
 }
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-const useAuth = (): AuthContextData => {
+function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-};
+}
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
